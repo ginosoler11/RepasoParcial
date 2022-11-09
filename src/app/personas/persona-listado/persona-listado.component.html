@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-secondary" routerLink="/nuevo">Nuevo</button>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Pais</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let persona of listado;">
+            <th scope="row">{{ persona.id }}</th>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.apellido}}</td>
+            <td>{{persona.edad}}</td>
+            <td>{{persona?.pais?.nombre}}</td>
+            <td>
+              <app-persona-baja [persona]="persona" (onEliminado)="actualizarListado()"></app-persona-baja>
+            </td>
+        </tr>
+    </tbody>
+  </table>
