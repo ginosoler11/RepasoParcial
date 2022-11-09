@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Pais } from 'src/app/models/pais';
 import { Persona } from 'src/app/models/persona';
+import { CiudadService } from 'src/app/services/ciudad.service';
 import { PaisService } from 'src/app/services/pais.service';
 import { PersonaService } from 'src/app/services/persona.service';
 
@@ -17,7 +18,8 @@ export class PersonaListadoComponent implements OnInit, OnDestroy {
 
   constructor(
     private servicioPersona: PersonaService,
-    private servicioPais: PaisService
+    private servicioPais: PaisService,
+    private servicioCiudad: CiudadService,
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +40,6 @@ export class PersonaListadoComponent implements OnInit, OnDestroy {
                 const indice = paises.findIndex((x) => x.id === persona.paisId);
                 persona.pais = paises[indice];
               });
-
               this.listado = listado;
             },
             error: () => {

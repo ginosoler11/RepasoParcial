@@ -1,30 +1,48 @@
-<form #personaForm="ngForm">
+<form [formGroup]="formulario">
     <div class="mb-3">
         <label for="inputNombre" class="form-label">Nombre</label>
-        <input required type="text" class="form-control" id="inputNombre" name="nombre"
-            [(ngModel)]="persona.nombre"
-            #nombre="ngModel"
-            [class.invalido]="nombre.touched && nombre.invalid">
+        <input required type="text" class="form-control" id="inputNombre" formControlName="nombre"
+            [class.invalido]="controlNombre.touched && controlNombre.hasError('required')">
+        <div *ngIf="controlNombre.touched && controlNombre.hasError('required')" class="alert alert-danger"
+            role="alert">
+            Nombre es requerido
+        </div>
     </div>
     <div class="mb-3">
         <label for="inputApellisdo" class="form-label">Apellido</label>
-        <input required type="text" class="form-control" id="inputApellido" name="apellido"
-            [(ngModel)]="persona.apellido"
-            #apellido="ngModel">
-        <div *ngIf="apellido.touched && apellido.invalid" class="alert alert-danger" role="alert">
+        <input required type="text" class="form-control" id="inputApellido" formControlName="apellido"
+            [class.invalido]="controlApellido.touched && controlApellido.hasError('required')">
+        <div *ngIf="controlApellido.touched && controlApellido.invalid" class="alert alert-danger" role="alert">
             Apellido es requerido
         </div>
     </div>
     <div class="mb-3">
         <label for="inputEdad" class="form-label">Edad</label>
-        <input type="number" class="form-control" id="inputEdad" name="edad"
-        [(ngModel)]="persona.edad">
+        <input type="number" class="form-control" id="inputEdad" formControlName="edad"
+            [class.invalido]="controlEdad.touched && controlEdad.hasError('required')">
+        <div *ngIf="controlEdad.touched && controlEdad.invalid" class="alert alert-danger" role="alert">
+            Edad es requerido
+        </div>
     </div>
     <div class="mb-3">
-      <label for="selectPais" class="form-label">Pais</label>
-      <select id="selectPais" class="form-select" name="pais" [(ngModel)]="persona.paisId">
-        <option *ngFor="let pais of paises" [value]="pais.id">{{ pais.nombre }}</option>
-      </select>
+        <label for="selectPais" class="form-label">Pais</label>
+        <select id="selectPais" class="form-select" formControlName="paisId"
+            [class.invalido]="controlPais.touched && controlPais.hasError('required')">
+            <option *ngFor="let pais of paises" [value]="pais.id">{{ pais.nombre }}</option>
+        </select>
+        <div *ngIf="controlPais.touched && controlPais.invalid" class="alert alert-danger" role="alert">
+            Pais es requerido
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="selectCiudad" class="form-label">Ciudad</label>
+        <select id="selectCiudad" class="form-select" formControlName="ciudadId"
+            [class.invalido]="controlCiudad.touched && controlCiudad.hasError('required')">
+            <option *ngFor="let ciudad of ciudades" [value]="ciudad.id">{{ ciudad.nombre }}</option>
+        </select>
+        <div *ngIf="controlCiudad.touched && controlCiudad.invalid" class="alert alert-danger" role="alert">
+            Ciudad es requerido
+        </div>
     </div>
     <button type="submit" class="btn btn-primary" (click)="guardar()">Guardar</button>
     <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>

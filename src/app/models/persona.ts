@@ -1,3 +1,4 @@
+import { Ciudad } from "./ciudad";
 import { Pais } from "./pais";
 
 export class Persona {
@@ -6,6 +7,7 @@ export class Persona {
     apellido: string;
     edad: number;
     paisId: string;
-
     pais: Pais;
+    ciudadId: string;
+    ciudad: Ciudad;
 }

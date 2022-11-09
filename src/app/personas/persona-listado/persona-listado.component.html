@@ -8,6 +8,7 @@
         <th scope="col">Apellido</th>
         <th scope="col">Edad</th>
         <th scope="col">Pais</th>
+        <th scope="col">Es Mayor</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -18,6 +19,7 @@
             <td>{{persona.apellido}}</td>
             <td>{{persona.edad}}</td>
             <td>{{persona?.pais?.nombre}}</td>
+            <td>{{persona.edad | esMayor:20}}</td>
             <td>
               <app-persona-baja [persona]="persona" (onEliminado)="actualizarListado()"></app-persona-baja>
             </td>
